@@ -1,0 +1,170 @@
+// Paleta: https://colorhunt.co/palette/faf3e1f5e7c6fa8112222222
+:root {
+  --cream: #faf3e1;
+  --sand: #f5e7c6;
+  --orange: #fa8112;
+  --orange-dark: #c25e00; // variante con contraste suficiente para texto sobre fondos claros
+  --ink: #222222;
+  --ink-soft: #4a4a4a;
+
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --radius: 16px;
+  --shadow: 0 6px 20px rgb(34 34 34 / 12%);
+  --header-h: 60px;
+  --container: 640px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  letter-spacing: 0.02em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+// ---------- Layout ----------
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.section {
+  padding-block: 56px;
+  scroll-margin-top: var(--header-h);
+
+  &--sand {
+    background: var(--sand);
+  }
+
+  &--dark {
+    background: var(--ink);
+    color: var(--cream);
+  }
+}
+
+.section-title {
+  font-size: 2rem;
+  text-transform: uppercase;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 10px;
+    border-radius: 2px;
+    background: var(--orange);
+  }
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange-dark);
+
+  .section--dark & {
+    color: var(--orange);
+  }
+}
+
+// Íconos: escalan con el font-size del contenedor
+app-icon svg {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+// ---------- Botones ----------
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &--primary {
+    background: var(--orange);
+    color: var(--ink);
+  }
+
+  &--outline {
+    background: transparent;
+    border-color: currentColor;
+  }
+
+  &--block {
+    width: 100%;
+  }
+}

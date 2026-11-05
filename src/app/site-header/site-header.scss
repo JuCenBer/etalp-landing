@@ -1,0 +1,99 @@
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: block;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding-inline: 16px;
+  background: rgb(34 34 34 / 96%);
+  color: var(--cream);
+  backdrop-filter: blur(6px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+
+  img {
+    height: 42px;
+    width: auto;
+  }
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--cream);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.nav {
+  position: absolute;
+  inset: var(--header-h) 0 auto;
+  display: none;
+  flex-direction: column;
+  padding: 8px 16px 20px;
+  background: var(--ink);
+  box-shadow: var(--shadow);
+
+  &--open {
+    display: flex;
+  }
+
+  a {
+    padding: 14px 4px;
+    border-bottom: 1px solid rgb(250 243 225 / 12%);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--orange);
+    }
+  }
+}
+
+// En pantallas anchas el menú se muestra en línea (con 6 links no entra en 768px).
+@media (min-width: 900px) {
+  .toggle {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+
+    a {
+      padding: 0;
+      border: 0;
+      font-size: 1rem;
+    }
+  }
+}

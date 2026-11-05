@@ -1,0 +1,64 @@
+<div
+  class="carousel"
+  role="region"
+  aria-roledescription="carrusel"
+  aria-label="Noticias"
+  (mouseenter)="setHovering(true)"
+  (mouseleave)="setHovering(false)"
+  (focusin)="userInteracted()"
+>
+  <div class="track" #track (scroll)="onScroll()" (pointerdown)="userInteracted()">
+    @for (item of items(); track item.title + item.date; let i = $index) {
+      <article
+        class="slide"
+        role="group"
+        aria-roledescription="noticia"
+        [attr.aria-label]="i + 1 + ' de ' + items().length"
+      >
+        <div class="media">
+          @if (item.image) {
+            <img [src]="item.image" [alt]="item.title" loading="lazy" />
+          } @else {
+            <img class="fallback" src="img/logo-night-3.png" alt="" loading="lazy" />
+          }
+        </div>
+        <div class="body">
+          <time [attr.datetime]="item.date">{{ item.date | date: 'longDate' }}</time>
+          <h3>{{ item.title }}</h3>
+          <!-- innerHTML: el summary admite enlaces (<a>); Angular sanitiza el contenido. -->
+          <p [innerHTML]="item.summary"></p>
+          @if (item.link) {
+            <a class="more" [href]="item.link" target="_blank" rel="noopener">
+              Ver más <app-icon name="chevron-right" />
+            </a>
+          }
+        </div>
+      </article>
+    }
+  </div>
+
+  @if (items().length > 1) {
+    <div class="controls">
+      <button type="button" class="arrow" aria-label="Noticia anterior" (click)="prev()">
+        <app-icon name="chevron-left" />
+      </button>
+
+      <div class="dots">
+        @for (item of items(); track item.title + item.date; let i = $index) {
+          <button
+            type="button"
+            class="dot"
+            [class.dot--active]="i === current()"
+            [attr.aria-label]="'Ir a la noticia ' + (i + 1)"
+            [attr.aria-current]="i === current() ? 'true' : null"
+            (click)="select(i)"
+          ></button>
+        }
+      </div>
+
+      <button type="button" class="arrow" aria-label="Noticia siguiente" (click)="next()">
+        <app-icon name="chevron-right" />
+      </button>
+    </div>
+  }
+</div>
