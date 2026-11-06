@@ -87,8 +87,8 @@ export const SITE = {
 
   about:
     'Somos una escuela dedicada a la enseñanza y práctica del tiro con arco en La Plata. ' +
-    'Acompañamos a quienes dan sus primeros tiros y a quienes buscan competir, ' +
-    'en un ambiente seguro y de compañerismo.',
+    'Acompañamos a quienes dan sus primeros tiros a quienes buscan competir, y a quienes solo quieren divertirse' +
+    'o distraerse de la rutina en un ambiente seguro y de compañerismo.',
 
   highlights: [
     { title: 'Para todas las edades', text: 'Clases para principiantes, juveniles y adultos.' },
