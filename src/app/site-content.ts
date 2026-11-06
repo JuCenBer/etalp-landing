@@ -97,8 +97,8 @@ export const SITE = {
   ],
 
   schedule: [
-    { day: 'Martes y Jueves', hours: '15:30 – 20:00' },
-    { day: 'Lunes, Miercoles y Viernes', hours: '17:00 – 20:00' },
+    { day: 'Lunes, Miércoles y Viernes', hours: '17:00 – 20:00', slots: ['17:00 – 18:30', '18:30 – 20:00'] },
+    { day: 'Martes y Jueves', hours: '15:30 – 20:00', slots: ['15:30 – 17:00', '17:00 – 18:30', '18:30 – 20:00'] },
   ],
 
   // TODO placeholder: subir la foto a public/img/nosotros/ y reemplazar `undefined` por

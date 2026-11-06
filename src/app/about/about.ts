@@ -30,14 +30,20 @@ import { SITE } from '../site-content';
 
         <div class="schedule">
           <h3><app-icon name="clock" /> Horarios</h3>
-          <dl>
-            @for (slot of site.schedule; track slot.day) {
-              <div>
-                <dt>{{ slot.day }}</dt>
-                <dd>{{ slot.hours }}</dd>
-              </div>
-            }
-          </dl>
+          @for (group of site.schedule; track group.day) {
+            <details>
+              <summary>
+                <span class="day">{{ group.day }}</span>
+                <span class="hours">{{ group.hours }}</span>
+                <span class="chevron"><app-icon name="chevron-right" /></span>
+              </summary>
+              <ul class="slots">
+                @for (slot of group.slots; track slot) {
+                  <li>{{ slot }}</li>
+                }
+              </ul>
+            </details>
+          }
         </div>
       </div>
     </section>
@@ -104,22 +110,66 @@ import { SITE } from '../site-content';
         color: var(--orange);
       }
 
-      dl {
-        margin: 0;
-      }
-
-      div {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        padding-block: 10px;
+      details {
         border-top: 1px solid rgb(250 243 225 / 15%);
       }
 
-      dd {
-        margin: 0;
+      summary {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-block: 10px;
+        cursor: pointer;
+        list-style: none;
+
+        &::-webkit-details-marker {
+          display: none;
+        }
+      }
+
+      .day {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .hours {
         font-weight: 600;
         white-space: nowrap;
+      }
+
+      .chevron {
+        display: inline-flex;
+        color: var(--orange);
+        transition: transform 0.2s ease;
+      }
+
+      details[open] .chevron {
+        transform: rotate(90deg);
+      }
+
+      .slots {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0 0 14px;
+        list-style: none;
+
+        li {
+          padding: 4px 12px;
+          border: 1px solid var(--orange);
+          border-radius: 999px;
+          background: rgb(250 243 225 / 6%);
+          font-size: 0.9rem;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .schedule .chevron {
+        transition: none;
       }
     }
   `,
